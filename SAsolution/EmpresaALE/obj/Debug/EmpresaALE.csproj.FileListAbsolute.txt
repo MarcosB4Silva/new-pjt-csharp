@@ -1,0 +1,13 @@
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\bin\Debug\EmpresaALE.exe.config
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\bin\Debug\EmpresaALE.exe
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\bin\Debug\EmpresaALE.pdb
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.csproj.AssemblyReference.cache
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.frmSplash.resources
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.Properties.Resources.resources
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.csproj.GenerateResource.cache
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.csproj.CoreCompileInputs.cache
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.exe
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.pdb
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.Form1.resources
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.frmLogin.resources
+C:\Users\marcos.bsilva4\source\repos\SAsolution\EmpresaALE\obj\Debug\EmpresaALE.frmMenuPrincipal.resources
