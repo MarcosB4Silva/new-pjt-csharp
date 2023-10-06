@@ -63,6 +63,12 @@ namespace ProjetoLojaABC
             }
         }
 
+        //verificar usuario
+        public void verificarUsuario()
+        {
+
+        }
+
         private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
