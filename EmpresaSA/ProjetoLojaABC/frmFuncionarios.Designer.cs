@@ -118,10 +118,6 @@ namespace ProjetoLojaABC
             // cbbEstado
             // 
             this.cbbEstado.FormattingEnabled = true;
-            this.cbbEstado.Items.AddRange(new object[] {
-            "SP",
-            "RJ",
-            "MG"});
             this.cbbEstado.Location = new System.Drawing.Point(600, 286);
             this.cbbEstado.Name = "cbbEstado";
             this.cbbEstado.Size = new System.Drawing.Size(128, 26);
