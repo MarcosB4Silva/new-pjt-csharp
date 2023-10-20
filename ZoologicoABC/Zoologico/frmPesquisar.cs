@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Zoologico
 {
@@ -40,6 +41,8 @@ namespace Zoologico
             txtDescricao.Enabled = true;
             btnPesquisar.Enabled = true;
             btnLimpar.Enabled = true;
+
+            txtDescricao.Focus();
         }
 
         private void rdbCodigo_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +65,126 @@ namespace Zoologico
             frmCadastrarAnimal abrir = new frmCadastrarAnimal();
             abrir.Show();
             this.Hide();
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            if (txtDescricao.Text == "")
+            {
+                MessageBox.Show("Favor inserir algo no campo descrição!", "Menssagen do sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                if (rdbCodigo.Checked)
+                {
+                    pesquisaCodigo();
+                }
+                if (rdbNome.Checked)
+                {
+                    pesquisa(txtDescricao.Text);
+                }
+                if (rdbTipo.Checked)
+                {
+                    pesquisaTipo(txtDescricao.Text);
+                }
+            }
+        }
+
+        //pesquisar por nome
+        public void pesquisa(string nome)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select nome from tbAnimais where nome like '%" + nome + "%';";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+
+            comm.Connection = Conexao.obterconexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+
+
+            ltbPesquisa.Items.Clear();
+            while (DR.Read())
+            {
+                ltbPesquisa.Items.Add(DR.GetString(0));
+            }
+
+            Conexao.fecharConexao();
+        }
+
+        // Pessquisa por codigo
+        public void pesquisaCodigo()
+        {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select nome from tbAnimais where idAnimal = @codigo;";
+                comm.CommandType = CommandType.Text;
+
+                comm.Parameters.Clear();
+                comm.Parameters.Add("@Codigo", MySqlDbType.VarChar, 100).Value = txtDescricao.Text;
+
+                comm.Connection = Conexao.obterconexao();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
+
+                ltbPesquisa.Items.Clear();
+                ltbPesquisa.Items.Add(DR.GetString(0));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro animal não encontrado",
+                   "Mensagem do sistema",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error,
+                   MessageBoxDefaultButton.Button1);
+            }
+
+
+
+
+            Conexao.fecharConexao();
+        }
+
+        //Pesquisa por tipo
+        public void pesquisaTipo(string tipo)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select nome from tbAnimais where tipo like '%" + tipo + "%';";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = tipo;
+
+            comm.Connection = Conexao.obterconexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+
+
+            ltbPesquisa.Items.Clear();
+            while (DR.Read())
+            {
+                ltbPesquisa.Items.Add(DR.GetString(0));
+            }
+
+            Conexao.fecharConexao();
+        }
+
+        private void ltbPesquisa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ltbPesquisa.SelectedItem == null)
+            {
+                MessageBox.Show("Favor selecionar um item.","Mensagem do sistema",MessageBoxButtons.OK, MessageBoxIcon.Error,MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                string nome = ltbPesquisa.SelectedItem.ToString();
+                frmCadastrarAnimal abrir = new frmCadastrarAnimal(nome);
+                abrir.Show();
+                this.Hide();
+            }
         }
     }
 }

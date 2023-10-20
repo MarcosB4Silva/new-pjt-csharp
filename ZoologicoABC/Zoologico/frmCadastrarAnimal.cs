@@ -19,6 +19,14 @@ namespace Zoologico
             desabilitarBtns();
         }
 
+        public frmCadastrarAnimal(string nome)
+        {
+            InitializeComponent();
+            txtNome.Text = nome;
+            pesquisarAnimal(nome);
+            habilitarBtnsAlterar();
+        }
+
         // desabilitar botões
         public void desabilitarBtns()
         {
@@ -35,9 +43,9 @@ namespace Zoologico
         public void habilitarBtns()
         {
             btnCadastrar.Enabled = true;
-            btnExcluir.Enabled = true;
             btnLimpar.Enabled = true;
-            btnLimpar.Enabled = true;
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
 
             txtNome.Enabled = true;
             txtIdade.Enabled = true;
@@ -47,6 +55,19 @@ namespace Zoologico
             txtNome.Focus();
         }
 
+        public void habilitarBtnsAlterar()
+        {
+            btnAlterar.Enabled = true;
+            btnLimpar.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnCadastrar.Enabled = false;
+            btnNovo.Enabled = false;
+
+            txtNome.Focus();
+        }
+
+
+
         private void btnSair_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -55,6 +76,7 @@ namespace Zoologico
         private void btnNovo_Click(object sender, EventArgs e)
         {
             habilitarBtns();
+            novocodigo();
         }
 
         //limpar campos
@@ -65,11 +87,32 @@ namespace Zoologico
         //limpar
         public void limpar()
         {
+            txtCodigo.Clear();
             txtNome.Clear();
             txtTipo.Clear();
             txtIdade.Clear();
 
             txtNome.Focus();
+            novocodigo();
+        }
+
+        //carregar codigo
+        public void novocodigo()
+        {
+
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select idAnimal+1 from tbAnimais order by idAnimal desc;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Connection = Conexao.obterconexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtCodigo.Text = Convert.ToString(DR.GetInt32(0));
+
+            Conexao.fecharConexao();
+
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -110,11 +153,97 @@ namespace Zoologico
             return res;
         }
 
+        public void pesquisarAnimal(string nome)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "select* from tbAnimais where nome = @nome;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = nome;
+
+            comm.Connection = Conexao.obterconexao();
+            MySqlDataReader DR;
+            DR = comm.ExecuteReader();
+            DR.Read();
+
+            txtCodigo.Text = Convert.ToString(DR.GetInt32(0));
+            txtNome.Text = DR.GetString(1);
+            txtTipo.Text = DR.GetString(2);
+            txtIdade.Text = Convert.ToString(DR.GetInt32(3));
+
+            Conexao.fecharConexao();
+        }
+
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             frmPesquisar abrir = new frmPesquisar();
             abrir.Show();
             this.Hide();
+        }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            if (Alterar(Convert.ToInt32(txtCodigo.Text)) == 1)
+            {
+                limpar();
+                habilitarBtns();
+            }
+        }
+
+        public int Alterar(int codigo)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "update tbAnimais set nome = @nome, tipo = @tipo, idade = @idade where idAnimal = @codigo;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
+            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = txtTipo.Text;
+            comm.Parameters.Add("@idade", MySqlDbType.VarChar, 100).Value = Convert.ToInt32(txtIdade.Text);
+            comm.Parameters.Add("@codigo", MySqlDbType.Int32).Value = codigo;
+
+            comm.Connection = Conexao.obterconexao();
+            int res = comm.ExecuteNonQuery();
+
+            Conexao.fecharConexao();
+            return res;
+        }
+
+        //Excluir
+        public int excluir(int codigo)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.CommandText = "delete from tbAnimais where idAnimal = @codigo;";
+            comm.CommandType = CommandType.Text;
+
+            comm.Parameters.Clear();
+            comm.Parameters.Add("@codigo", MySqlDbType.Int32).Value = codigo;
+
+            comm.Connection = Conexao.obterconexao();
+            int res = comm.ExecuteNonQuery();
+
+            Conexao.fecharConexao();
+            return res;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult resp = MessageBox.Show("Tem certeza que deseja excluir?", "menssagem do sistema", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
+            if (resp == DialogResult.Yes)
+            {
+                if (excluir(Convert.ToInt32(txtCodigo.Text)) == 1)
+                {
+                    MessageBox.Show("Animal excluido com sucesso", "menssagem do sistema", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    limpar();
+                    habilitarBtns();
+                    novocodigo();
+                }
+                else
+                {
+                    MessageBox.Show("ERRO! ao excluir", "menssagem do sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
         }
     }
 }
