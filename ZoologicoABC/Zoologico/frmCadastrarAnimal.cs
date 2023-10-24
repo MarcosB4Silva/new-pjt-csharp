@@ -37,7 +37,7 @@ namespace Zoologico
 
             txtNome.Enabled = false;
             txtIdade.Enabled = false;
-            txtTipo.Enabled = false;
+            cbbTipo.Enabled = false;
         }
         // Habilitar botões
         public void habilitarBtns()
@@ -49,7 +49,7 @@ namespace Zoologico
 
             txtNome.Enabled = true;
             txtIdade.Enabled = true;
-            txtTipo.Enabled = true;
+            cbbTipo.Enabled = true;
 
             btnNovo.Enabled = false;
             txtNome.Focus();
@@ -89,8 +89,9 @@ namespace Zoologico
         {
             txtCodigo.Clear();
             txtNome.Clear();
-            txtTipo.Clear();
+            cbbTipo.SelectedIndex = -1;
             txtIdade.Clear();
+            habilitarBtns();
 
             txtNome.Focus();
             novocodigo();
@@ -99,25 +100,30 @@ namespace Zoologico
         //carregar codigo
         public void novocodigo()
         {
+            try
+            {
+                MySqlCommand comm = new MySqlCommand();
+                comm.CommandText = "select idAnimal+1 from tbAnimais order by idAnimal desc;";
+                comm.CommandType = CommandType.Text;
 
-            MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select idAnimal+1 from tbAnimais order by idAnimal desc;";
-            comm.CommandType = CommandType.Text;
+                comm.Connection = Conexao.obterconexao();
+                MySqlDataReader DR;
+                DR = comm.ExecuteReader();
+                DR.Read();
 
-            comm.Connection = Conexao.obterconexao();
-            MySqlDataReader DR;
-            DR = comm.ExecuteReader();
-            DR.Read();
-
-            txtCodigo.Text = Convert.ToString(DR.GetInt32(0));
+                txtCodigo.Text = Convert.ToString(DR.GetInt32(0));
+            }
+            catch (Exception)
+            {
+                txtCodigo.Text = "1";
+            }
 
             Conexao.fecharConexao();
-
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (txtIdade.Text.Equals("") || txtNome.Text.Equals("") || txtTipo.Text.Equals(""))
+            if (txtIdade.Text.Equals("") || txtNome.Text.Equals("") || cbbTipo.SelectedIndex == -1)
             {
                 MessageBox.Show("ERROR!! favor prencher campos", "Menssagem do Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
@@ -143,7 +149,7 @@ namespace Zoologico
 
             comm.Parameters.Clear();
             comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
-            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = txtTipo.Text;
+            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = cbbTipo.Text;
             comm.Parameters.Add("@idade", MySqlDbType.VarChar, 100).Value = Convert.ToInt32(txtIdade.Text);
 
             comm.Connection = Conexao.obterconexao();
@@ -169,7 +175,7 @@ namespace Zoologico
 
             txtCodigo.Text = Convert.ToString(DR.GetInt32(0));
             txtNome.Text = DR.GetString(1);
-            txtTipo.Text = DR.GetString(2);
+            cbbTipo.Text = DR.GetString(2);
             txtIdade.Text = Convert.ToString(DR.GetInt32(3));
 
             Conexao.fecharConexao();
@@ -199,7 +205,7 @@ namespace Zoologico
 
             comm.Parameters.Clear();
             comm.Parameters.Add("@nome", MySqlDbType.VarChar, 100).Value = txtNome.Text;
-            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = txtTipo.Text;
+            comm.Parameters.Add("@tipo", MySqlDbType.VarChar, 100).Value = cbbTipo.Text;
             comm.Parameters.Add("@idade", MySqlDbType.VarChar, 100).Value = Convert.ToInt32(txtIdade.Text);
             comm.Parameters.Add("@codigo", MySqlDbType.Int32).Value = codigo;
 

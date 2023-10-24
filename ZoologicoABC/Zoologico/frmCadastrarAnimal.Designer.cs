@@ -39,7 +39,6 @@ namespace Zoologico
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtTipo = new System.Windows.Forms.TextBox();
             this.txtIdade = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@ namespace Zoologico
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cbbTipo = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,7 +157,7 @@ namespace Zoologico
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.groupBox2.Controls.Add(this.txtTipo);
+            this.groupBox2.Controls.Add(this.cbbTipo);
             this.groupBox2.Controls.Add(this.txtIdade);
             this.groupBox2.Controls.Add(this.txtNome);
             this.groupBox2.Controls.Add(this.txtCodigo);
@@ -172,13 +172,6 @@ namespace Zoologico
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cadastro :";
-            // 
-            // txtTipo
-            // 
-            this.txtTipo.Location = new System.Drawing.Point(76, 94);
-            this.txtTipo.Name = "txtTipo";
-            this.txtTipo.Size = new System.Drawing.Size(206, 25);
-            this.txtTipo.TabIndex = 4;
             // 
             // txtIdade
             // 
@@ -262,6 +255,28 @@ namespace Zoologico
             this.label5.TabIndex = 19;
             this.label5.Text = "Zoológico";
             // 
+            // cbbTipo
+            // 
+            this.cbbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTipo.FormattingEnabled = true;
+            this.cbbTipo.ItemHeight = 17;
+            this.cbbTipo.Items.AddRange(new object[] {
+            "Elefante",
+            "Leão",
+            "Trigre",
+            "Tatu",
+            "Pato",
+            "Macaco",
+            "Girafa",
+            "Crocodilo",
+            "Zebra",
+            "Urso",
+            "Gato(a)"});
+            this.cbbTipo.Location = new System.Drawing.Point(76, 91);
+            this.cbbTipo.Name = "cbbTipo";
+            this.cbbTipo.Size = new System.Drawing.Size(159, 25);
+            this.cbbTipo.TabIndex = 4;
+            // 
             // frmCadastrarAnimal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +312,6 @@ namespace Zoologico
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Button btnAlterar;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtTipo;
         private System.Windows.Forms.TextBox txtIdade;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtCodigo;
@@ -307,5 +321,6 @@ namespace Zoologico
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbbTipo;
     }
 }

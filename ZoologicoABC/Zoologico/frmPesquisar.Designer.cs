@@ -41,12 +41,14 @@ namespace Zoologico
             this.ltbPesquisa = new System.Windows.Forms.ListBox();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.cbbTipo = new System.Windows.Forms.ComboBox();
             this.gpbPesquisa.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpbPesquisa
             // 
             this.gpbPesquisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.gpbPesquisa.Controls.Add(this.cbbTipo);
             this.gpbPesquisa.Controls.Add(this.rdbTipo);
             this.gpbPesquisa.Controls.Add(this.rdbNome);
             this.gpbPesquisa.Controls.Add(this.rdbCodigo);
@@ -60,7 +62,7 @@ namespace Zoologico
             // rdbTipo
             // 
             this.rdbTipo.AutoSize = true;
-            this.rdbTipo.Location = new System.Drawing.Point(260, 36);
+            this.rdbTipo.Location = new System.Drawing.Point(198, 35);
             this.rdbTipo.Name = "rdbTipo";
             this.rdbTipo.Size = new System.Drawing.Size(46, 17);
             this.rdbTipo.TabIndex = 3;
@@ -71,7 +73,7 @@ namespace Zoologico
             // rdbNome
             // 
             this.rdbNome.AutoSize = true;
-            this.rdbNome.Location = new System.Drawing.Point(168, 36);
+            this.rdbNome.Location = new System.Drawing.Point(106, 35);
             this.rdbNome.Name = "rdbNome";
             this.rdbNome.Size = new System.Drawing.Size(53, 17);
             this.rdbNome.TabIndex = 2;
@@ -82,7 +84,7 @@ namespace Zoologico
             // rdbCodigo
             // 
             this.rdbCodigo.AutoSize = true;
-            this.rdbCodigo.Location = new System.Drawing.Point(76, 36);
+            this.rdbCodigo.Location = new System.Drawing.Point(14, 35);
             this.rdbCodigo.Name = "rdbCodigo";
             this.rdbCodigo.Size = new System.Drawing.Size(58, 17);
             this.rdbCodigo.TabIndex = 1;
@@ -95,7 +97,7 @@ namespace Zoologico
             this.txtDescricao.Location = new System.Drawing.Point(78, 148);
             this.txtDescricao.Name = "txtDescricao";
             this.txtDescricao.Size = new System.Drawing.Size(358, 20);
-            this.txtDescricao.TabIndex = 4;
+            this.txtDescricao.TabIndex = 5;
             // 
             // btnPesquisar
             // 
@@ -103,7 +105,7 @@ namespace Zoologico
             this.btnPesquisar.Location = new System.Drawing.Point(20, 204);
             this.btnPesquisar.Name = "btnPesquisar";
             this.btnPesquisar.Size = new System.Drawing.Size(175, 137);
-            this.btnPesquisar.TabIndex = 5;
+            this.btnPesquisar.TabIndex = 6;
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPesquisar.UseVisualStyleBackColor = true;
@@ -115,7 +117,7 @@ namespace Zoologico
             this.btnLimpar.Location = new System.Drawing.Point(259, 204);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(177, 58);
-            this.btnLimpar.TabIndex = 6;
+            this.btnLimpar.TabIndex = 7;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -124,11 +126,13 @@ namespace Zoologico
             // 
             // ltbPesquisa
             // 
+            this.ltbPesquisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ltbPesquisa.FormattingEnabled = true;
+            this.ltbPesquisa.ItemHeight = 20;
             this.ltbPesquisa.Location = new System.Drawing.Point(478, 12);
             this.ltbPesquisa.Name = "ltbPesquisa";
-            this.ltbPesquisa.Size = new System.Drawing.Size(290, 329);
-            this.ltbPesquisa.TabIndex = 10;
+            this.ltbPesquisa.Size = new System.Drawing.Size(290, 324);
+            this.ltbPesquisa.TabIndex = 9;
             this.ltbPesquisa.SelectedIndexChanged += new System.EventHandler(this.ltbPesquisa_SelectedIndexChanged);
             // 
             // lblDescricao
@@ -146,12 +150,34 @@ namespace Zoologico
             this.btnVoltar.Location = new System.Drawing.Point(259, 283);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(177, 58);
-            this.btnVoltar.TabIndex = 7;
+            this.btnVoltar.TabIndex = 8;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoltar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // cbbTipo
+            // 
+            this.cbbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTipo.FormattingEnabled = true;
+            this.cbbTipo.ItemHeight = 13;
+            this.cbbTipo.Items.AddRange(new object[] {
+            "Elefante",
+            "Leão",
+            "Trigre",
+            "Tatu",
+            "Pato",
+            "Macaco",
+            "Girafa",
+            "Crocodilo",
+            "Zebra",
+            "Urso",
+            "Gato(a)"});
+            this.cbbTipo.Location = new System.Drawing.Point(251, 35);
+            this.cbbTipo.Name = "cbbTipo";
+            this.cbbTipo.Size = new System.Drawing.Size(159, 21);
+            this.cbbTipo.TabIndex = 4;
             // 
             // frmPesquisar
             // 
@@ -192,6 +218,7 @@ namespace Zoologico
         private System.Windows.Forms.ListBox ltbPesquisa;
         private System.Windows.Forms.Label lblDescricao;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.ComboBox cbbTipo;
     }
 }
 

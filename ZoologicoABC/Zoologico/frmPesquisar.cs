@@ -26,6 +26,8 @@ namespace Zoologico
         //limpar
         public void limpar()
         {
+            cbbTipo.Enabled = false;
+            cbbTipo.SelectedIndex = -1;
             rdbCodigo.Checked = false;
             rdbNome.Checked = false;
             rdbTipo.Checked = false;
@@ -33,14 +35,17 @@ namespace Zoologico
             txtDescricao.Enabled = false;
             btnPesquisar.Enabled = false;
             btnLimpar.Enabled = false;
+            ltbPesquisa.Items.Clear();
         }
 
         //habilitar campos
         public void habilitarCampos()
         {
+            cbbTipo.Enabled = true;
             txtDescricao.Enabled = true;
             btnPesquisar.Enabled = true;
             btnLimpar.Enabled = true;
+            ltbPesquisa.Items.Clear();
 
             txtDescricao.Focus();
         }
@@ -48,16 +53,22 @@ namespace Zoologico
         private void rdbCodigo_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
+            cbbTipo.SelectedIndex = -1;
+            cbbTipo.Enabled = false;
         }
 
         private void rdbNome_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
+            cbbTipo.SelectedIndex = -1;
+            cbbTipo.Enabled = false;
         }
 
         private void rdbTipo_CheckedChanged(object sender, EventArgs e)
         {
             habilitarCampos();
+            txtDescricao.Enabled = false;
+            txtDescricao.Clear();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -71,7 +82,14 @@ namespace Zoologico
         {
             if (txtDescricao.Text == "")
             {
-                MessageBox.Show("Favor inserir algo no campo descrição!", "Menssagen do sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                if (rdbTipo.Checked)
+                {
+                    pesquisaTipo(cbbTipo.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Favor inserir algo no campo descrição!", "Menssagen do sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
             }
             else
             {
@@ -82,10 +100,6 @@ namespace Zoologico
                 if (rdbNome.Checked)
                 {
                     pesquisa(txtDescricao.Text);
-                }
-                if (rdbTipo.Checked)
-                {
-                    pesquisaTipo(txtDescricao.Text);
                 }
             }
         }
@@ -110,7 +124,6 @@ namespace Zoologico
             {
                 ltbPesquisa.Items.Add(DR.GetString(0));
             }
-
             Conexao.fecharConexao();
         }
 
