@@ -30,7 +30,7 @@ namespace ProjetoLojaABC
         
         public frmCadastroUsuario(string nome)
         {
-            carregarUsuarioPesquisar(nome);
+            //carregarUsuarioPesquisar(nome);
             desabilitarCampos();
             txtNome.Text = nome;
         }

@@ -100,6 +100,11 @@ namespace Zoologico
                 if (rdbNome.Checked)
                 {
                     pesquisa(txtDescricao.Text);
+                    if (ltbPesquisa.Items.Count == 0)
+                    {
+                        MessageBox.Show("Nenhum animal encontrado!", "Menssagen do sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    }
+               
                 }
             }
         }

@@ -55,3 +55,11 @@ C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\Proj
 C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\obj\Debug\ProjetoLojaABC.csproj.CopyComplete
 C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\obj\Debug\ProjetoLojaABC.frmCadastroUsuario.resources
 C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\obj\Debug\ProjetoLojaABC.frmPesquisarUsuario.resources
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.dll
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.Video.DirectShow.dll
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.Video.dll
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.xml
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.Video.xml
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\bin\Debug\AForge.Video.DirectShow.xml
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\obj\Debug\ProjetoLojaABC.frmWebCam.resources
+C:\Users\marcos.bsilva4\Documents\Visual Studio 2019\ProjetoTI110\EmpresaSA\ProjetoLojaABC\obj\Debug\ProjetoLojaABC.frmGorjeta.resources
