@@ -156,7 +156,7 @@ namespace ProjetoLojaABC
         public int confirmar()
         {
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "insert into tbConta(avaliacao,valorConta,valorGorjeta,valorTotal, codFunc) values(@avalia, @valorConta, @valorGorjeta, @valorTotal, @codFunc);";
+            comm.CommandText = "insert into tbConta(avaliacao,valorConta,valorGorjeta,valorTotal, data, codFunc) values(@avalia, @valorConta, @valorGorjeta, @valorTotal, @Data, @codFunc);";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
@@ -164,6 +164,7 @@ namespace ProjetoLojaABC
             comm.Parameters.Add("@valorConta", MySqlDbType.Decimal, 9).Value = txtValorConta.Text;
             comm.Parameters.Add("@valorGorjeta", MySqlDbType.Decimal, 9).Value = txtGorjeta.Text;
             comm.Parameters.Add("@valorTotal", MySqlDbType.Decimal, 9).Value = txtTotal.Text;
+            comm.Parameters.Add("@Data", MySqlDbType.Date).Value = Convert.ToDateTime(dtpData.Text);
             comm.Parameters.Add("@codFunc", MySqlDbType.VarChar, 100).Value = txtCodFunc.Text;
 
             comm.Connection = Conexao.obterconexao();
@@ -187,8 +188,16 @@ namespace ProjetoLojaABC
             cbbAvalia.SelectedIndex = -1;
             cbbFuncionario.SelectedIndex = -1;
             txtCodFunc.Clear();
+            dtpData.Value = DateTime.Now;
 
             cbbFuncionario.Focus();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmPesquisarGorjeta abrir = new frmPesquisarGorjeta();
+            abrir.Show();
+            this.Hide();
         }
     }
 }

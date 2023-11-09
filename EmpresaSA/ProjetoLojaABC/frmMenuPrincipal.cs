@@ -55,5 +55,12 @@ namespace ProjetoLojaABC
             this.Hide();
 
         }
+
+        private void btnVendas_Click(object sender, EventArgs e)
+        {
+            frmVendas abrir = new frmVendas();
+            abrir.Show();
+            this.Hide();
+        }
     }
 }

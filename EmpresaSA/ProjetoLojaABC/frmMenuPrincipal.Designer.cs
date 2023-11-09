@@ -80,6 +80,7 @@ namespace ProjetoLojaABC
             this.btnVendas.Text = "&Vendas";
             this.btnVendas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnVendas.UseVisualStyleBackColor = true;
+            this.btnVendas.Click += new System.EventHandler(this.btnVendas_Click);
             // 
             // btnClientes
             // 
