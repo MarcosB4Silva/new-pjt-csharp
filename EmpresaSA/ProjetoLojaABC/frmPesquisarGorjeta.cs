@@ -81,16 +81,16 @@ namespace ProjetoLojaABC
             pesquisar(Convert.ToInt32(txtCodFunc.Text));
             if (ltbGorjeta.Items.Count == 0)
             {
-                MessageBox.Show("Funcionários não possui gorjeta nesse dia","Mensagem do sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Funcionários não possui gorjeta nesse dia", "Mensagem do sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         public void pesquisar(int codigo)
         {
             Decimal total = 0;
-            
+
             MySqlCommand comm = new MySqlCommand();
-            comm.CommandText = "select valorGorjeta, avaliacao, CAST(data AS DATE)  from tbConta where codFunc = @codFunc and data between @Data and @data2";
+            comm.CommandText = "select valorGorjeta, avaliacao, CAST(data AS date)  from tbConta where codFunc = @codFunc and data between @Data and @data2";
             comm.CommandType = CommandType.Text;
 
             comm.Parameters.Clear();
@@ -102,10 +102,11 @@ namespace ProjetoLojaABC
             MySqlDataReader DR;
             DR = comm.ExecuteReader();
             ltbGorjeta.Items.Clear();
-            
+
             while (DR.Read())
             {
-                ltbGorjeta.Items.Add("R$ " + DR.GetString(0) +" - "+ DR.GetString(1) + " " + DR.GetString(2));
+                string data = DR.GetString(2);
+                ltbGorjeta.Items.Add("R$ " + DR.GetString(0) + " - " + DR.GetString(1) + " - " + data.Trim(new Char[] { ' ', '0', ':' }));
                 total = total + Convert.ToDecimal(DR.GetString(0));
             }
             txtTotal.Text = "R$ " + Convert.ToString(total);
